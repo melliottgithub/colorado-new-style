@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/styles";
+import {Link} from 'react-router-dom'
+
 
 function HideOnScroll(props) {
   const { children } = props;
@@ -35,8 +37,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Header(props) {
   const classes = useStyles();
+  const [value, setValue] = useState(0);
+
+
+  const handleChange = (e, value) => {
+    setValue(value);
+  };
 
   return (
     <Fragment>
@@ -53,14 +62,35 @@ export default function Header(props) {
                 }}
               >
                 New
-              </span>{" "}
+              </span>
               Style
             </Typography>
-            <Tabs textColor="inherit" className={classes.tabContainer}>
-              <Tab className={classes.tab} label="Categories" />
-              <Tab className={classes.tab} label="Virtual School" />
-              <Tab className={classes.tab} label="About Us" />
-              <Tab className={classes.tab} label="EN" />
+            <Tabs value={value} onChange={handleChange}
+              className={classes.tabContainer}>
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/categories"
+                label="Categories"
+              />
+              <Tab
+                className={classes.tab}
+                component={Link}
+                to="/virtualschool"
+                label="Virtual School"
+              />
+              <Tab
+                className={classes.tab}
+                to="/about"
+                component={Link}
+                label="About Us"
+              />
+              <Tab
+                className={classes.tab}
+                to="/language"
+                component={Link}
+                label="EN"
+              />
             </Tabs>
           </ToolBar>
         </AppBar>
