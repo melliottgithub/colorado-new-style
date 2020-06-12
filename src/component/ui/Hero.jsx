@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
@@ -29,7 +29,14 @@ const useStyles = makeStyles((theme) => ({
   tabContainer: {
     marginLeft: "auto",
   },
-  button: {},
+  button: {
+
+  },
+  logo: {
+    "&:hover": {
+      backgroundColor: 'transparent'
+    }
+  }
 }));
 
 export default function Hero() {
@@ -40,13 +47,28 @@ export default function Hero() {
     setValue(value);
   };
 
+  useEffect(() => {
+    if (window.location.pathname === '/' && value !== 0) {
+      setValue(null)
+    } else if (window.location.pathname === '/' && value !== 1) {
+      setValue(1)
+    } else if (window.location.pathname === '/' && value !== 2) {
+      setValue(2)
+    }else if (window.location.pathname === '/' && value !== 3) {
+      setValue(3)
+    }else if (window.location.pathname === '/' && value !== 4) {
+      setValue(4)
+    }
+    
+  }, [value])
+
   return (
     <Fragment>
       <ElevationScroll>
         <AppBar position="fixed" color="transparent">
           <ToolBar>
             <Typography variant="h6">
-              Colorado <span style={{ color: "#D92332" }}>New</span> Style
+             <Button className={classes.logo} component={Link} to='/' disableRipple> Colorado <span style={{ color: "#D92332" }}>New</span> Style</Button>
             </Typography>
             <Tabs
               value={value}

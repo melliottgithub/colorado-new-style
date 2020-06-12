@@ -7,15 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/styles";
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 function HideOnScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger();
-
   return (
-    <Slide appear={true} direction="down" in={trigger}>
+    <Slide direction="down" in={trigger}>
       {children}
     </Slide>
   );
@@ -37,11 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Header(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-
 
   const handleChange = (e, value) => {
     setValue(value);
@@ -61,12 +57,15 @@ export default function Header(props) {
                   fontWeight: "700",
                 }}
               >
-                New
+                New{" "}
               </span>
               Style
             </Typography>
-            <Tabs value={value} onChange={handleChange}
-              className={classes.tabContainer}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              className={classes.tabContainer}
+            >
               <Tab
                 className={classes.tab}
                 component={Link}
