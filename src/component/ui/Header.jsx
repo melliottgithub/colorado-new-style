@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     // textTransform: 'none',
-
+    ...theme.typography.tab,
     minWidth: 10,
     marginLeft: "25px",
   },

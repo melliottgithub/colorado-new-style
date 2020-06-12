@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import { Button } from "@material-ui/core";
+import Example from "./Example";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -27,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   tabContainer: {
     marginLeft: "auto",
   },
+  button: {
+    
+  }
 }));
 
 export default function Hero() {
@@ -34,6 +39,7 @@ export default function Hero() {
 
   return (
     <Fragment>
+      <Example />
       <ElevationScroll>
         <AppBar position="fixed" color="transparent">
           <ToolBar>
@@ -50,6 +56,7 @@ export default function Hero() {
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolbarMargin} />
+      <Button className={classes.button} variant='contained' color='secondary'>Click me!</Button>
     </Fragment>
   );
 }
