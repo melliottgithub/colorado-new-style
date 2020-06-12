@@ -3,13 +3,14 @@ import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
+import Typography from "@material-ui/core/Typography";
 
 function HideOnScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger();
 
   return (
-      <Slide appear={true} direction="down" in={trigger}>
+    <Slide appear={true} direction="down" in={trigger}>
       {children}
     </Slide>
   );
@@ -20,7 +21,11 @@ export default function Header(props) {
     <Fragment>
       <HideOnScroll>
         <AppBar position="fixed">
-          <ToolBar>Colorado New Style</ToolBar>
+          <ToolBar>
+            <Typography variant="h6">
+              Colorado New Style
+            </Typography>
+          </ToolBar>
         </AppBar>
       </HideOnScroll>
     </Fragment>
