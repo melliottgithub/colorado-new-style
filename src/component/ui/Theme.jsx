@@ -1,7 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const arcBlack = "#1C1C1C";
-const arcRed = "#D90B0B";
+const arcRed = "#D92332";
 
 export default createMuiTheme({
   palette: {
@@ -17,8 +17,9 @@ export default createMuiTheme({
     },
   },
   typography: {
-    h3: {
-      fontWeight: "100",
-    },
+      tab: {
+        fontWeight: 300,
+    fontSize: ".9rem",
+    }
   },
 });
