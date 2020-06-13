@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -8,12 +8,13 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 function HideOnScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger();
   return (
-    <Slide direction="down" in={trigger}>
+    <Slide appear={false} direction="down" in={!trigger}>
       {children}
     </Slide>
   );
@@ -35,20 +36,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header(props) {
+export default function Header() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-
-  const handleChange = (e, value) => {
+  
+ const handleChange = (e, value) => {
     setValue(value);
   };
+
+  useEffect(() => {
+    if (window.location.pathname === '/' && value !== 0) {
+      setValue(null)
+    } else if (window.location.pathname === '/' && value !== 1) {
+      setValue(1)
+    } else if (window.location.pathname === '/' && value !== 2) {
+      setValue(2)
+    } else if (window.location.pathname === '/' && value !== 3) {
+      setValue(3)
+    } else if (window.location.pathname === '/' && value !== 4) {
+      setValue(4)
+    }
+  },[value])
+
+ 
 
   return (
     <Fragment>
       <HideOnScroll>
-        <AppBar position="fixed">
+        <AppBar>
           <ToolBar className={classes.appContainer}>
             <Typography variant="h6">
+              <Button
+                className={classes.logo}
+                component={Link}
+                to="/"
+                disableRipple
+              >
               Colorado{" "}
               <span
                 style={{
@@ -60,6 +83,7 @@ export default function Header(props) {
                 New{" "}
               </span>
               Style
+              </Button>
             </Typography>
             <Tabs
               value={value}
